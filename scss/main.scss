@@ -20,19 +20,19 @@ body {
   width: 80%;
   height: 90%;
   display: grid;
-  grid-template-rows: minmax(200px, 0.9fr) 2fr;
+  grid-template-rows: minmax(200px, 0.75fr) 2fr;
   gap: 1rem;
 
   .Jeremy-Robson {
     display: grid;
     grid-template-rows: 2fr 0.9fr;
     background-color: lightblue;
-    border-radius: 25px;
+    border-radius: 20px;
     background-color: $dark-blue;
 
     .header {
       background-color: $blue;
-      border-radius: 25px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
     }
@@ -93,7 +93,7 @@ body {
 
     .work {
       display: grid;
-      grid-template-rows: 0.75fr 2fr;
+      grid-template-rows: 1fr 2fr;
       border-radius: 25px;
       position: relative;
     }

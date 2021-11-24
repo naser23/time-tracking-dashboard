@@ -1,4 +1,4 @@
-.hero-img {
+.work .hero-img {
   background-image: url(/time-tracking-dashboard/images/icon-work.svg);
   background-position: right 10% top 60%;
   background-repeat: no-repeat;
@@ -7,16 +7,20 @@
   border-top-right-radius: 25px;
 }
 
-.content {
+.work .content {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
-  border-top-left-radius: 25px;
+  border-radius: 20px;
   background-color: #1c1f4a;
+  width: 100%;
+  height: 70%;
+  top: 2rem;
+  position: absolute;
 }
 
-.content .current-hours {
+.work .content .current-hours {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -32,18 +36,49 @@
           align-items: center;
 }
 
-.content .current-hours h3 {
+.work .content .current-hours h3 {
   font-family: "Rubik", sans-serif;
   font-weight: 300;
   color: white;
   font-size: 1.25rem;
 }
 
-.content .current-hours h2 {
+.work .content .current-hours h2 {
   font-family: "Rubik", sans-serif;
   font-weight: 300;
   color: white;
   font-size: 1.75rem;
+}
+
+.work .content .previous-hours {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.work .content .previous-hours-text {
+  text-align: right;
+}
+
+.work .content .previous-hours img {
+  padding-bottom: 1rem;
+}
+
+.work .content .previous-hours p {
+  font-family: "Rubik", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #bdc1ff;
 }
 
 * {
@@ -68,8 +103,8 @@ body {
   height: 90%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: minmax(200px, 0.9fr) 2fr;
-      grid-template-rows: minmax(200px, 0.9fr) 2fr;
+  -ms-grid-rows: minmax(200px, 0.75fr) 2fr;
+      grid-template-rows: minmax(200px, 0.75fr) 2fr;
   gap: 1rem;
 }
 
@@ -79,13 +114,13 @@ body {
   -ms-grid-rows: 2fr 0.9fr;
       grid-template-rows: 2fr 0.9fr;
   background-color: lightblue;
-  border-radius: 25px;
+  border-radius: 20px;
   background-color: #1c1f4a;
 }
 
 #grid .Jeremy-Robson .header {
   background-color: #5847eb;
-  border-radius: 25px;
+  border-radius: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -170,8 +205,8 @@ body {
 #grid .nested-grid .work {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 0.75fr 2fr;
-      grid-template-rows: 0.75fr 2fr;
+  -ms-grid-rows: 1fr 2fr;
+      grid-template-rows: 1fr 2fr;
   border-radius: 25px;
   position: relative;
 }
