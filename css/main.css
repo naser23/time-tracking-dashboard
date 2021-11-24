@@ -1,3 +1,51 @@
+.hero-img {
+  background-image: url(/time-tracking-dashboard/images/icon-work.svg);
+  background-position: right 10% top 60%;
+  background-repeat: no-repeat;
+  background-color: #ff8c66;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  border-top-left-radius: 25px;
+  background-color: #1c1f4a;
+}
+
+.content .current-hours {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.content .current-hours h3 {
+  font-family: "Rubik", sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 1.25rem;
+}
+
+.content .current-hours h2 {
+  font-family: "Rubik", sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 1.75rem;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +56,7 @@
 body {
   width: 100vw;
   height: 100vh;
+  max-height: auto;
   display: -ms-grid;
   display: grid;
   place-items: center;
@@ -19,16 +68,16 @@ body {
   height: 90%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 0.75fr 2fr;
-      grid-template-rows: 0.75fr 2fr;
+  -ms-grid-rows: minmax(200px, 0.9fr) 2fr;
+      grid-template-rows: minmax(200px, 0.9fr) 2fr;
   gap: 1rem;
 }
 
 #grid .Jeremy-Robson {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 2fr 0.75fr;
-      grid-template-rows: 2fr 0.75fr;
+  -ms-grid-rows: 2fr 0.9fr;
+      grid-template-rows: 2fr 0.9fr;
   background-color: lightblue;
   border-radius: 25px;
   background-color: #1c1f4a;
@@ -50,6 +99,17 @@ body {
   font-family: "Rubik", sans-serif;
   font-weight: 400;
   color: #bdc1ff;
+  height: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 #grid .Jeremy-Robson span {
@@ -64,5 +124,55 @@ body {
   margin: 0 1rem;
   border: 3px solid white;
   border-radius: 35px;
+}
+
+#grid .Jeremy-Robson .filter-time-period {
+  width: 100%;
+}
+
+#grid .Jeremy-Robson .filter-time-period ul {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#grid .Jeremy-Robson .filter-time-period li {
+  list-style-type: none;
+}
+
+#grid .Jeremy-Robson .filter-time-period a {
+  text-decoration: none;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  color: #6f76c8;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+#grid .Jeremy-Robson .filter-time-period a:hover {
+  color: white;
+}
+
+#grid .nested-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (minmax(150px, auto))[6];
+      grid-template-rows: repeat(6, minmax(150px, auto));
+}
+
+#grid .nested-grid .work {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 0.75fr 2fr;
+      grid-template-rows: 0.75fr 2fr;
+  border-radius: 25px;
+  position: relative;
 }
 /*# sourceMappingURL=main.css.map */
