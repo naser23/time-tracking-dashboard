@@ -6,6 +6,63 @@
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  background-color: #0f1424;
+}
+
+#grid {
+  width: 80%;
+  height: 90%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 0.75fr 2fr;
+      grid-template-rows: 0.75fr 2fr;
+  gap: 1rem;
+}
+
+#grid .Jeremy-Robson {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 2fr 0.75fr;
+      grid-template-rows: 2fr 0.75fr;
+  background-color: lightblue;
+  border-radius: 25px;
+  background-color: #1c1f4a;
+}
+
+#grid .Jeremy-Robson .header {
   background-color: #5847eb;
+  border-radius: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#grid .Jeremy-Robson .header-text {
+  font-size: 1rem;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  color: #bdc1ff;
+}
+
+#grid .Jeremy-Robson span {
+  font-size: 1.5rem;
+  font-family: "Rubik", sans-serif;
+  font-weight: 300;
+  color: white;
+}
+
+#grid .Jeremy-Robson img {
+  width: 4.5rem;
+  margin: 0 1rem;
+  border: 3px solid white;
+  border-radius: 35px;
 }
 /*# sourceMappingURL=main.css.map */
