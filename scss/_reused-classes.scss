@@ -1,13 +1,11 @@
 @import "_config";
 
-.work {
-  .hero-img {
-    @include setBackground($work);
-    background-color: $light-red-work;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-  }
-
+.hero-img {
+  background-color: $light-red-work;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+.row-sizing {
   .content {
     display: grid;
     grid-template-columns: 1fr 1fr;

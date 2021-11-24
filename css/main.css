@@ -1,13 +1,10 @@
-.work .hero-img {
-  background-image: url(/time-tracking-dashboard/images/icon-work.svg);
-  background-position: right 10% top 60%;
-  background-repeat: no-repeat;
+.hero-img {
   background-color: #ff8c66;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }
 
-.work .content {
+.row-sizing .content {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -20,7 +17,7 @@
   position: absolute;
 }
 
-.work .content .current-hours {
+.row-sizing .content .current-hours {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36,21 +33,21 @@
           align-items: center;
 }
 
-.work .content .current-hours h3 {
+.row-sizing .content .current-hours h3 {
   font-family: "Rubik", sans-serif;
   font-weight: 300;
   color: white;
   font-size: 1.25rem;
 }
 
-.work .content .current-hours h2 {
+.row-sizing .content .current-hours h2 {
   font-family: "Rubik", sans-serif;
   font-weight: 300;
   color: white;
   font-size: 1.75rem;
 }
 
-.work .content .previous-hours {
+.row-sizing .content .previous-hours {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -66,15 +63,15 @@
           align-items: center;
 }
 
-.work .content .previous-hours-text {
+.row-sizing .content .previous-hours-text {
   text-align: right;
 }
 
-.work .content .previous-hours img {
+.row-sizing .content .previous-hours img {
   padding-bottom: 1rem;
 }
 
-.work .content .previous-hours p {
+.row-sizing .content .previous-hours p {
   font-family: "Rubik", sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -198,11 +195,11 @@ body {
 #grid .nested-grid {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: (minmax(150px, auto))[6];
-      grid-template-rows: repeat(6, minmax(150px, auto));
+  -ms-grid-rows: (minmax(150px, auto))[5];
+      grid-template-rows: repeat(5, minmax(150px, auto));
 }
 
-#grid .nested-grid .work {
+#grid .nested-grid .row-sizing {
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 1fr 2fr;

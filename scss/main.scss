@@ -89,9 +89,9 @@ body {
 
   .nested-grid {
     display: grid;
-    grid-template-rows: repeat(6, minmax(150px, auto));
+    grid-template-rows: repeat(5, minmax(150px, auto));
 
-    .work {
+    .row-sizing {
       display: grid;
       grid-template-rows: 1fr 2fr;
       border-radius: 25px;
