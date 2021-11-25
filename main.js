@@ -46,7 +46,6 @@ function createDiv() {
 }
 
 // everything insde of current hours
-
 function createCurrentHours() {
   const currentHours = document.createElement("div");
   currentHours.classList.add("current-hours");
@@ -82,4 +81,33 @@ function createTime(text) {
   const time = document.createElement("h2");
   time.textContent = text;
   return time;
+}
+
+// everything inside previous hours
+function createPreviousHours() {
+  const previousHours = document.createElement("div");
+  previousHours.classList.add("previous-hours");
+
+  console.log(previousHours);
+  return previousHours;
+}
+
+createPreviousHours();
+
+function createPreviousHoursText() {
+  const previousHoursText = document.createElement("div");
+  previousHoursText.classList.add("previous-hours-text");
+  return previousHoursText;
+}
+
+function createDotImg() {
+  const img = document.createElement("img");
+  img.src = "/time-tracking-dashboard/images/icon-ellipsis.svg";
+  return img;
+}
+
+function createP(text) {
+  const p = document.createElement("p");
+  p.textContent = text;
+  return p;
 }
