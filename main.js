@@ -1,6 +1,14 @@
 "use strict";
 
 const nestedGrid = document.querySelector(".nested-grid");
+const heroImgColors = [
+  "hsl(15, 100%, 70%)",
+  "hsl(195, 74%, 62%)",
+  "hsl(348, 100%, 68%)",
+  "hsl(145, 58%, 55%)",
+  "hsl(264, 64%, 52%)",
+  "hsl(43, 84%, 65%)",
+];
 console.log(nestedGrid);
 
 // pulling the data from the json file
@@ -14,16 +22,37 @@ fetch("data.json")
   });
 
 function startApplication(data) {
-  // have to break down each point in the array of objects to get the data from
+  // have to break down each point in the array of objects to get the data from them
   for (const piece of data) {
-    console.log(piece);
-    createDiv();
+    // creating the div
+    let heroImage = heroImg(
+      `/time-tracking-dashboard/images/icon-${piece.title
+        .replace(/\s+/g, "-")
+        .toLowerCase()}.svg`,
+      // to find the matching index point and display the background colors for hero img
+      heroImgColors[data.indexOf(piece)]
+    );
+
+    let content = createContent();
+    let div = createDiv();
+
+    let currentHours = createCurrentHours();
+
+    // appending all of them to div
+    content.appendChild(currentHours);
+    div.appendChild(heroImage);
+    div.appendChild(content);
+    nestedGrid.appendChild(div);
   }
 }
 
-function heroImg() {
+function heroImg(source, color) {
   const heroImg = document.createElement("div");
   heroImg.classList.add("hero-img");
+  heroImg.style.backgroundImage = `url("${source}")`;
+  heroImg.style.backgroundPosition = "right 10% top 60%";
+  heroImg.style.backgroundRepeat = "no-repeat";
+  heroImg.style.backgroundColor = color;
   return heroImg;
 }
 
@@ -36,31 +65,21 @@ function createContent() {
 function createDiv() {
   const div = document.createElement("div");
   div.classList.add("row-sizing");
-
-  let heroImage = heroImg();
-  let content = createContent();
-
-  div.appendChild(heroImage);
-  div.appendChild(content);
-  nestedGrid.appendChild(div);
+  return div;
 }
 
-// everything insde of current hours
+// everything insde of current hours //
 function createCurrentHours() {
   const currentHours = document.createElement("div");
   currentHours.classList.add("current-hours");
 
-  let a = "work";
-  let t = "00hrs";
-
-  let activity = createActivityHeader(a);
-  let time = createTime(t);
   let currentHoursText = createCurrentHoursText();
+  let activityHeader = createActivityHeader("text");
+  let time = createTime("text");
 
-  currentHoursText.appendChild(activity);
+  currentHoursText.appendChild(activityHeader);
   currentHoursText.appendChild(time);
   currentHours.appendChild(currentHoursText);
-
   console.log(currentHours);
   return currentHours;
 }
@@ -83,7 +102,7 @@ function createTime(text) {
   return time;
 }
 
-// everything inside previous hours
+// everything inside previous hours //
 function createPreviousHours() {
   const previousHours = document.createElement("div");
   previousHours.classList.add("previous-hours");
@@ -91,8 +110,6 @@ function createPreviousHours() {
   console.log(previousHours);
   return previousHours;
 }
-
-createPreviousHours();
 
 function createPreviousHoursText() {
   const previousHoursText = document.createElement("div");
@@ -111,3 +128,5 @@ function createP(text) {
   p.textContent = text;
   return p;
 }
+
+function testing() {}
