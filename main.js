@@ -3,15 +3,20 @@
 const nestedGrid = document.querySelector(".nested-grid");
 console.log(nestedGrid);
 
-let url = "data.json";
-
-fetch(url)
+fetch("data.json")
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
-    console.log(data);
+    startApplication(data);
   });
+
+function startApplication(data) {
+  for (const piece of data) {
+    console.log(piece);
+    createDiv();
+  }
+}
 
 function heroImg() {
   const heroImg = document.createElement("div");
@@ -36,4 +41,3 @@ function createDiv() {
   div.appendChild(content);
   nestedGrid.appendChild(div);
 }
-createDiv();

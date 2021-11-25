@@ -90,6 +90,7 @@ body {
   .nested-grid {
     display: grid;
     grid-template-rows: repeat(5, minmax(150px, auto));
+    max-height: auto;
 
     .row-sizing {
       display: grid;
