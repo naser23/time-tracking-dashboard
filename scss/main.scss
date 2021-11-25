@@ -9,7 +9,7 @@
 
 body {
   width: 100vw;
-  height: 100vh;
+  height: 100vh auto;
   max-height: auto;
   display: grid;
   place-items: center;
@@ -20,7 +20,7 @@ body {
   width: 80%;
   height: 90%;
   display: grid;
-  grid-template-rows: minmax(200px, 0.75fr) 2fr;
+  grid-template-rows: minmax(200px, 0.75fr) minmax(2fr, auto);
   gap: 1rem;
 
   .Jeremy-Robson {
@@ -89,7 +89,7 @@ body {
 
   .nested-grid {
     display: grid;
-    grid-template-rows: repeat(5, minmax(150px, auto));
+    grid-template-rows: repeat(6, minmax(150px, auto));
     max-height: auto;
 
     .row-sizing {

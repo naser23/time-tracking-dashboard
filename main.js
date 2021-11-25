@@ -3,8 +3,10 @@
 const nestedGrid = document.querySelector(".nested-grid");
 console.log(nestedGrid);
 
+// pulling the data from the json file
 fetch("data.json")
   .then(function (response) {
+    // returns the pending promise to use in the second chain
     return response.json();
   })
   .then(function (data) {
@@ -12,6 +14,7 @@ fetch("data.json")
   });
 
 function startApplication(data) {
+  // have to break down each point in the array of objects to get the data from
   for (const piece of data) {
     console.log(piece);
     createDiv();
@@ -40,4 +43,43 @@ function createDiv() {
   div.appendChild(heroImage);
   div.appendChild(content);
   nestedGrid.appendChild(div);
+}
+
+// everything insde of current hours
+
+function createCurrentHours() {
+  const currentHours = document.createElement("div");
+  currentHours.classList.add("current-hours");
+
+  let a = "work";
+  let t = "00hrs";
+
+  let activity = createActivityHeader(a);
+  let time = createTime(t);
+  let currentHoursText = createCurrentHoursText();
+
+  currentHoursText.appendChild(activity);
+  currentHoursText.appendChild(time);
+  currentHours.appendChild(currentHoursText);
+
+  console.log(currentHours);
+  return currentHours;
+}
+
+function createCurrentHoursText() {
+  const currentHoursText = document.createElement("div");
+  currentHoursText.classList.add("current-hours-text");
+  return currentHoursText;
+}
+
+function createActivityHeader(text) {
+  const activity = document.createElement("h3");
+  activity.textContent = text;
+  return activity;
+}
+
+function createTime(text) {
+  const time = document.createElement("h2");
+  time.textContent = text;
+  return time;
 }
