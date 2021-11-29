@@ -1,5 +1,9 @@
 "use strict";
 
+const dailyButton = document.querySelector(".daily");
+const weeklyButton = document.querySelector(".weekly");
+const monthlyButton = document.querySelector(".monthly");
+
 const nestedGrid = document.querySelector(".nested-grid");
 const heroImgColors = [
   "hsl(15, 100%, 70%)",
@@ -9,7 +13,6 @@ const heroImgColors = [
   "hsl(264, 64%, 52%)",
   "hsl(43, 84%, 65%)",
 ];
-console.log(nestedGrid);
 
 // pulling the data from the json file
 fetch("data.json")
@@ -26,9 +29,7 @@ function startApplication(data) {
   for (const piece of data) {
     // creating the div
     let heroImage = heroImg(
-      `/time-tracking-dashboard/images/icon-${piece.title
-        .replace(/\s+/g, "-")
-        .toLowerCase()}.svg`,
+      createBackground(piece),
       // to find the matching index point and display the background colors for hero img
       heroImgColors[data.indexOf(piece)]
     );
@@ -36,26 +37,27 @@ function startApplication(data) {
     let content = createContent();
     let div = createDiv();
 
-    // current Hours
-    let currentHoursText = createCurrentHoursText();
-    let activityHeader = createActivityHeader(piece.title);
-    let time = createTime(`${piece.timeframes.daily.current}hrs`);
-    let currentHours = createCurrentHours();
-
-    currentHoursText.appendChild(activityHeader);
-    currentHoursText.appendChild(time);
-    currentHours.appendChild(currentHoursText);
+    let currentHours = createCurrentHours(piece);
+    let previousHours = createPreviousHours(piece);
 
     // appending all of them to div
     content.appendChild(currentHours);
+    content.appendChild(previousHours);
     div.appendChild(heroImage);
     div.appendChild(content);
     nestedGrid.appendChild(div);
-
-    console.log(piece.timeframes.daily.previous);
   }
 }
 
+// for setting the correct background image for heroImg
+function createBackground(piece) {
+  let specificBackgroundUrl = `/time-tracking-dashboard/images/icon-${piece.title
+    .replace(/\s+/g, "-")
+    .toLowerCase()}.svg`;
+  return specificBackgroundUrl;
+}
+
+// CREATING ALL THE COMPONENTS FOR THE PROJECT //
 function heroImg(source, color) {
   const heroImg = document.createElement("div");
   heroImg.classList.add("hero-img");
@@ -79,10 +81,16 @@ function createDiv() {
 }
 
 // everything insde of current hours //
-function createCurrentHours() {
+function createCurrentHours(piece) {
   const currentHours = document.createElement("div");
   currentHours.classList.add("current-hours");
+  let currentHoursText = createCurrentHoursText();
+  let activityHeader = createActivityHeader(piece.title);
+  let time = createTime(piece.timeframes.daily.current, currentHours);
 
+  currentHoursText.appendChild(activityHeader);
+  currentHoursText.appendChild(time);
+  currentHours.appendChild(currentHoursText);
   return currentHours;
 }
 
@@ -100,16 +108,22 @@ function createActivityHeader(text) {
 
 function createTime(text) {
   const time = document.createElement("h2");
-  time.textContent = text;
+  time.textContent = `${text}hrs`;
   return time;
 }
 
 // everything inside previous hours //
-function createPreviousHours() {
+function createPreviousHours(piece) {
   const previousHours = document.createElement("div");
   previousHours.classList.add("previous-hours");
 
-  console.log(previousHours);
+  let previousHoursText = createPreviousHoursText();
+  let dotImg = createDotImg();
+  let p = createP(piece.timeframes.daily.previous);
+
+  previousHoursText.appendChild(dotImg);
+  previousHoursText.appendChild(p);
+  previousHours.appendChild(previousHoursText);
   return previousHours;
 }
 
@@ -127,8 +141,9 @@ function createDotImg() {
 
 function createP(text) {
   const p = document.createElement("p");
-  p.textContent = text;
+  p.textContent = `Yesterday - ${text}hrs`;
   return p;
 }
 
-function testing() {}
+// functionallity for changing time
+function dailyTime() {}
