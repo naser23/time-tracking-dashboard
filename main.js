@@ -36,13 +36,23 @@ function startApplication(data) {
     let content = createContent();
     let div = createDiv();
 
+    // current Hours
+    let currentHoursText = createCurrentHoursText();
+    let activityHeader = createActivityHeader(piece.title);
+    let time = createTime(`${piece.timeframes.daily.current}hrs`);
     let currentHours = createCurrentHours();
+
+    currentHoursText.appendChild(activityHeader);
+    currentHoursText.appendChild(time);
+    currentHours.appendChild(currentHoursText);
 
     // appending all of them to div
     content.appendChild(currentHours);
     div.appendChild(heroImage);
     div.appendChild(content);
     nestedGrid.appendChild(div);
+
+    console.log(piece.timeframes.daily.previous);
   }
 }
 
@@ -73,14 +83,6 @@ function createCurrentHours() {
   const currentHours = document.createElement("div");
   currentHours.classList.add("current-hours");
 
-  let currentHoursText = createCurrentHoursText();
-  let activityHeader = createActivityHeader("text");
-  let time = createTime("text");
-
-  currentHoursText.appendChild(activityHeader);
-  currentHoursText.appendChild(time);
-  currentHours.appendChild(currentHoursText);
-  console.log(currentHours);
   return currentHours;
 }
 
