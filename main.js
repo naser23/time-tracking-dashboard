@@ -91,6 +91,7 @@ function createCurrentHours(piece) {
   currentHoursText.appendChild(activityHeader);
   currentHoursText.appendChild(time);
   currentHours.appendChild(currentHoursText);
+
   return currentHours;
 }
 
@@ -146,4 +147,20 @@ function createP(text) {
 }
 
 // functionallity for changing time
-function dailyTime() {}
+dailyButton.addEventListener("click", dailyTime);
+weeklyButton.addEventListener("click", weeklyTime);
+monthlyButton.addEventListener("click", monthlyTime);
+
+function gettingCurrentHoursData() {
+  dailyTime();
+}
+
+function dailyTime() {
+  console.log("daily time worked");
+}
+function weeklyTime() {
+  console.log("weekly time worked");
+}
+function monthlyTime() {
+  console.log("monthly time worked");
+}
