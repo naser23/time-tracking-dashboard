@@ -151,10 +151,6 @@ dailyButton.addEventListener("click", dailyTime);
 weeklyButton.addEventListener("click", weeklyTime);
 monthlyButton.addEventListener("click", monthlyTime);
 
-function gettingCurrentHoursData() {
-  dailyTime();
-}
-
 function dailyTime() {
   console.log("daily time worked");
 }
