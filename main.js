@@ -3,6 +3,7 @@
 const dailyButton = document.querySelector(".daily");
 const weeklyButton = document.querySelector(".weekly");
 const monthlyButton = document.querySelector(".monthly");
+let timePeriod = "daily";
 
 const nestedGrid = document.querySelector(".nested-grid");
 const heroImgColors = [
@@ -47,6 +48,7 @@ function startApplication(data) {
     div.appendChild(content);
     nestedGrid.appendChild(div);
   }
+  timeChanger(data);
 }
 
 // for setting the correct background image for heroImg
@@ -84,14 +86,15 @@ function createDiv() {
 function createCurrentHours(piece) {
   const currentHours = document.createElement("div");
   currentHours.classList.add("current-hours");
+
+  // creating and appending the currentHours components
   let currentHoursText = createCurrentHoursText();
   let activityHeader = createActivityHeader(piece.title);
-  let time = createTime(piece.timeframes.daily.current, currentHours);
+  let time = createTime();
 
   currentHoursText.appendChild(activityHeader);
   currentHoursText.appendChild(time);
   currentHours.appendChild(currentHoursText);
-
   return currentHours;
 }
 
@@ -107,9 +110,10 @@ function createActivityHeader(text) {
   return activity;
 }
 
-function createTime(text) {
+function createTime() {
   const time = document.createElement("h2");
-  time.textContent = `${text}hrs`;
+  time.classList.add("time-text");
+  time.textContent = "";
   return time;
 }
 
@@ -152,11 +156,37 @@ weeklyButton.addEventListener("click", weeklyTime);
 monthlyButton.addEventListener("click", monthlyTime);
 
 function dailyTime() {
-  console.log("daily time worked");
+  timePeriod = "daily";
+  console.log(timePeriod);
 }
 function weeklyTime() {
-  console.log("weekly time worked");
+  timePeriod = "weekly";
+  console.log(timePeriod);
 }
 function monthlyTime() {
-  console.log("monthly time worked");
+  timePeriod = "monthly";
+  console.log(timePeriod);
+}
+
+function timeChanger(data) {
+  let time = document.getElementsByClassName("time-text");
+  let p = document.getElementsByTagName("p");
+
+  for (const piece of data) {
+    let index = data.indexOf(piece);
+    let yesterday = `Yesterday - ${piece.timeframes.daily.previous}hrs`;
+    let lastWeek = `Last Week - ${piece.timeframes.weekly.previous}hrs`;
+    let lastMonth = `Last Month - ${piece.timeframes.monthly.previous}hrs`;
+
+    if (timePeriod == "daily") {
+      time[index].textContent = `${piece.timeframes.daily.current}hrs`;
+      p[index].textContent = yesterday;
+    } else if (timePeriod == "weekly") {
+      time[index].textContent = `${piece.timeframes.weekly.current}hrs`;
+      p[index].textContent = lastWeek;
+    } else if (timePeriod == "monthly") {
+      time[index].textContent = `${piece.timeframes.monthly.current}hrs`;
+      p[index].textContent = lastMonth;
+    }
+  }
 }
