@@ -8,8 +8,6 @@ const heroImg = document.querySelectorAll(".hero-img");
 const timeText = document.querySelectorAll(".time-text");
 const p = document.getElementsByTagName("p");
 
-let timePeriod = "weekly";
-
 const nestedGrid = document.querySelector(".nested-grid");
 const heroImgColors = [
   "hsl(15, 100%, 70%)",
@@ -58,7 +56,6 @@ function heroImgBackground(piece, index, background) {
 }
 
 // functionallity for changing time
-
 dailyButton.addEventListener("click", dailyTime);
 weeklyButton.addEventListener("click", weeklyTime);
 monthlyButton.addEventListener("click", monthlyTime);
@@ -66,7 +63,6 @@ monthlyButton.addEventListener("click", monthlyTime);
 function dailyTime() {
   fetch("data.json")
     .then(function (response) {
-      // returns the pending promise to use in the second chain
       return response.json();
     })
     .then(function (data) {
@@ -82,7 +78,6 @@ function dailyTime() {
 function weeklyTime() {
   fetch("data.json")
     .then(function (response) {
-      // returns the pending promise to use in the second chain
       return response.json();
     })
     .then(function (data) {
@@ -98,7 +93,6 @@ function weeklyTime() {
 function monthlyTime() {
   fetch("data.json")
     .then(function (response) {
-      // returns the pending promise to use in the second chain
       return response.json();
     })
     .then(function (data) {
