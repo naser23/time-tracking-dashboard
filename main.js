@@ -64,9 +64,8 @@ weeklyButton.addEventListener("click", weeklyTime);
 monthlyButton.addEventListener("click", monthlyTime);
 
 function dailyTime() {
-  let yesterday = `yesterday - ${piece.timeframes.daily.previous}hrs`;
-  timeText[index].textContent = `${piece.timeframes.daily.current}hrs`;
-  p[index].textContent = yesterday;
+  timePeriod = "daily";
+  console.log(timePeriod);
 }
 function weeklyTime() {
   timePeriod = "weekly";
