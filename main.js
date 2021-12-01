@@ -3,6 +3,11 @@
 const dailyButton = document.querySelector(".daily");
 const weeklyButton = document.querySelector(".weekly");
 const monthlyButton = document.querySelector(".monthly");
+const rowSizing = document.querySelectorAll(".row-sizing");
+const heroImg = document.querySelectorAll(".hero-img");
+const timeText = document.querySelectorAll(".time-text");
+const p = document.getElementsByTagName("p");
+
 let timePeriod = "daily";
 
 const nestedGrid = document.querySelector(".nested-grid");
@@ -16,148 +21,52 @@ const heroImgColors = [
 ];
 
 // pulling the data from the json file
+
 fetch("data.json")
   .then(function (response) {
     // returns the pending promise to use in the second chain
     return response.json();
   })
   .then(function (data) {
-    startApplication(data);
+    data.forEach(function (piece) {
+      let index = data.indexOf(piece);
+      startApplication(piece, index);
+    });
   });
 
-function startApplication(data) {
-  // have to break down each point in the array of objects to get the data from them
-  for (const piece of data) {
-    // creating the div
-    let heroImage = heroImg(
-      createBackground(piece),
-      // to find the matching index point and display the background colors for hero img
-      heroImgColors[data.indexOf(piece)]
-    );
-
-    let content = createContent();
-    let div = createDiv();
-
-    let currentHours = createCurrentHours(piece);
-    let previousHours = createPreviousHours(piece);
-
-    // appending all of them to div
-    content.appendChild(currentHours);
-    content.appendChild(previousHours);
-    div.appendChild(heroImage);
-    div.appendChild(content);
-    nestedGrid.appendChild(div);
-  }
-  timeChanger(data);
+function startApplication(piece, index) {
+  let background = setBackground(piece.title);
+  heroImgBackground(piece, index, background);
+  changeTime(piece, index);
 }
 
 // for setting the correct background image for heroImg
-function createBackground(piece) {
-  let specificBackgroundUrl = `/time-tracking-dashboard/images/icon-${piece.title
+function setBackground(source) {
+  let specificBackgroundUrl = `/time-tracking-dashboard/images/icon-${source
     .replace(/\s+/g, "-")
     .toLowerCase()}.svg`;
+
   return specificBackgroundUrl;
 }
 
-// CREATING ALL THE COMPONENTS FOR THE PROJECT //
-function heroImg(source, color) {
-  const heroImg = document.createElement("div");
-  heroImg.classList.add("hero-img");
-  heroImg.style.backgroundImage = `url("${source}")`;
-  heroImg.style.backgroundPosition = "right 10% top 60%";
-  heroImg.style.backgroundRepeat = "no-repeat";
-  heroImg.style.backgroundColor = color;
-  return heroImg;
-}
-
-function createContent() {
-  const content = document.createElement("div");
-  content.classList.add("content");
-  return content;
-}
-
-function createDiv() {
-  const div = document.createElement("div");
-  div.classList.add("row-sizing");
-  return div;
-}
-
-// everything insde of current hours //
-function createCurrentHours(piece) {
-  const currentHours = document.createElement("div");
-  currentHours.classList.add("current-hours");
-
-  // creating and appending the currentHours components
-  let currentHoursText = createCurrentHoursText();
-  let activityHeader = createActivityHeader(piece.title);
-  let time = createTime();
-
-  currentHoursText.appendChild(activityHeader);
-  currentHoursText.appendChild(time);
-  currentHours.appendChild(currentHoursText);
-  return currentHours;
-}
-
-function createCurrentHoursText() {
-  const currentHoursText = document.createElement("div");
-  currentHoursText.classList.add("current-hours-text");
-  return currentHoursText;
-}
-
-function createActivityHeader(text) {
-  const activity = document.createElement("h3");
-  activity.textContent = text;
-  return activity;
-}
-
-function createTime() {
-  const time = document.createElement("h2");
-  time.classList.add("time-text");
-  time.textContent = "";
-  return time;
-}
-
-// everything inside previous hours //
-function createPreviousHours(piece) {
-  const previousHours = document.createElement("div");
-  previousHours.classList.add("previous-hours");
-
-  let previousHoursText = createPreviousHoursText();
-  let dotImg = createDotImg();
-  let p = createP(piece.timeframes.daily.previous);
-
-  previousHoursText.appendChild(dotImg);
-  previousHoursText.appendChild(p);
-  previousHours.appendChild(previousHoursText);
-  return previousHours;
-}
-
-function createPreviousHoursText() {
-  const previousHoursText = document.createElement("div");
-  previousHoursText.classList.add("previous-hours-text");
-  return previousHoursText;
-}
-
-function createDotImg() {
-  const img = document.createElement("img");
-  img.src = "/time-tracking-dashboard/images/icon-ellipsis.svg";
-  return img;
-}
-
-function createP(text) {
-  const p = document.createElement("p");
-  p.textContent = `Yesterday - ${text}hrs`;
-  return p;
+// setting the background of the heroImg elements
+function heroImgBackground(piece, index, background) {
+  heroImg[index].style.backgroundColor = heroImgColors[index];
+  heroImg[index].style.backgroundImage = `url('${background}')`;
+  heroImg[index].style.backgroundPosition = "right 10% top 60%";
+  heroImg[index].style.backgroundRepeat = "no-repeat";
 }
 
 // functionallity for changing time
+
 dailyButton.addEventListener("click", dailyTime);
 weeklyButton.addEventListener("click", weeklyTime);
 monthlyButton.addEventListener("click", monthlyTime);
 
 function dailyTime() {
-  timePeriod = "daily";
-  console.log(timePeriod);
+  let yesterday = `yesterday - ${piece.timeframes.daily.previous}hrs`;
+  timeText[index].textContent = `${piece.timeframes.daily.current}hrs`;
+  p[index].textContent = yesterday;
 }
 function weeklyTime() {
   timePeriod = "weekly";
@@ -168,25 +77,19 @@ function monthlyTime() {
   console.log(timePeriod);
 }
 
-function timeChanger(data) {
-  let time = document.getElementsByClassName("time-text");
-  let p = document.getElementsByTagName("p");
+function changeTime(piece, index) {
+  let yesterday = `yesterday - ${piece.timeframes.daily.previous}hrs`;
+  let lastWeek = `Last Week - ${piece.timeframes.weekly.previous}hrs`;
+  let lastMonth = `Last Month - ${piece.timeframes.monthly.previous}hrs`;
 
-  for (const piece of data) {
-    let index = data.indexOf(piece);
-    let yesterday = `Yesterday - ${piece.timeframes.daily.previous}hrs`;
-    let lastWeek = `Last Week - ${piece.timeframes.weekly.previous}hrs`;
-    let lastMonth = `Last Month - ${piece.timeframes.monthly.previous}hrs`;
-
-    if (timePeriod == "daily") {
-      time[index].textContent = `${piece.timeframes.daily.current}hrs`;
-      p[index].textContent = yesterday;
-    } else if (timePeriod == "weekly") {
-      time[index].textContent = `${piece.timeframes.weekly.current}hrs`;
-      p[index].textContent = lastWeek;
-    } else if (timePeriod == "monthly") {
-      time[index].textContent = `${piece.timeframes.monthly.current}hrs`;
-      p[index].textContent = lastMonth;
-    }
+  if (timePeriod == "daily") {
+    timeText[index].textContent = `${piece.timeframes.daily.current}hrs`;
+    p[index].textContent = yesterday;
+  } else if (timePeriod == "weekly") {
+    timeText[index].textContent = `${piece.timeframes.weekly.current}hrs`;
+    p[index].textContent = lastWeek;
+  } else if (timePeriod == "monthly") {
+    timeText[index].textContent = `${piece.timeframes.monthly.current}hrs`;
+    p[index].textContent = lastMonth;
   }
 }
