@@ -8,7 +8,7 @@ const heroImg = document.querySelectorAll(".hero-img");
 const timeText = document.querySelectorAll(".time-text");
 const p = document.getElementsByTagName("p");
 
-let timePeriod = "daily";
+let timePeriod = "weekly";
 
 const nestedGrid = document.querySelector(".nested-grid");
 const heroImgColors = [
@@ -37,7 +37,7 @@ fetch("data.json")
 function startApplication(piece, index) {
   let background = setBackground(piece.title);
   heroImgBackground(piece, index, background);
-  changeTime(piece, index);
+  dailyTime();
 }
 
 // for setting the correct background image for heroImg
@@ -64,31 +64,50 @@ weeklyButton.addEventListener("click", weeklyTime);
 monthlyButton.addEventListener("click", monthlyTime);
 
 function dailyTime() {
-  timePeriod = "daily";
-  console.log(timePeriod);
+  fetch("data.json")
+    .then(function (response) {
+      // returns the pending promise to use in the second chain
+      return response.json();
+    })
+    .then(function (data) {
+      data.forEach(function (piece) {
+        let yesterday = `yesterday - ${piece.timeframes.daily.previous}hrs`;
+        let index = data.indexOf(piece);
+
+        timeText[index].textContent = `${piece.timeframes.daily.current}hrs`;
+        p[index].textContent = yesterday;
+      });
+    });
 }
 function weeklyTime() {
-  timePeriod = "weekly";
-  console.log(timePeriod);
+  fetch("data.json")
+    .then(function (response) {
+      // returns the pending promise to use in the second chain
+      return response.json();
+    })
+    .then(function (data) {
+      data.forEach(function (piece) {
+        let lastWeek = `Last Week - ${piece.timeframes.weekly.previous}hrs`;
+        let index = data.indexOf(piece);
+
+        timeText[index].textContent = `${piece.timeframes.weekly.current}hrs`;
+        p[index].textContent = lastWeek;
+      });
+    });
 }
 function monthlyTime() {
-  timePeriod = "monthly";
-  console.log(timePeriod);
-}
+  fetch("data.json")
+    .then(function (response) {
+      // returns the pending promise to use in the second chain
+      return response.json();
+    })
+    .then(function (data) {
+      data.forEach(function (piece) {
+        let lastMonth = `Last Month - ${piece.timeframes.monthly.previous}hrs`;
+        let index = data.indexOf(piece);
 
-function changeTime(piece, index) {
-  let yesterday = `yesterday - ${piece.timeframes.daily.previous}hrs`;
-  let lastWeek = `Last Week - ${piece.timeframes.weekly.previous}hrs`;
-  let lastMonth = `Last Month - ${piece.timeframes.monthly.previous}hrs`;
-
-  if (timePeriod == "daily") {
-    timeText[index].textContent = `${piece.timeframes.daily.current}hrs`;
-    p[index].textContent = yesterday;
-  } else if (timePeriod == "weekly") {
-    timeText[index].textContent = `${piece.timeframes.weekly.current}hrs`;
-    p[index].textContent = lastWeek;
-  } else if (timePeriod == "monthly") {
-    timeText[index].textContent = `${piece.timeframes.monthly.current}hrs`;
-    p[index].textContent = lastMonth;
-  }
+        timeText[index].textContent = `${piece.timeframes.monthly.current}hrs`;
+        p[index].textContent = lastMonth;
+      });
+    });
 }
