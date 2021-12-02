@@ -1,0 +1,117 @@
+@import "_config";
+
+@media (min-width: 320px) {
+  #grid {
+    grid-template-rows: 200px 2fr;
+    height: 100%;
+    max-height: auto;
+
+    .Jeremy-Robson {
+      .header {
+        align-items: center;
+      }
+    }
+  }
+  .row-sizing {
+    .content {
+      p {
+        font-size: 0.85rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 360px) {
+  .row-sizing {
+    .content {
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 767.98px) {
+  body {
+    display: flex;
+    justify-content: center;
+
+    #grid {
+      grid-template-columns: 0.75fr 2fr;
+      grid-template-rows: 1fr;
+      // grid-template-rows: auto;
+      height: 70%;
+      width: 90%;
+
+      .Jeremy-Robson {
+        .header {
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-around;
+
+          img {
+            margin: 0 0;
+            margin-left: 2rem;
+          }
+
+          .header-text {
+            font-size: 1.25rem;
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+          }
+
+          span {
+            font-size: 3rem;
+          }
+        }
+      }
+
+      .nested-grid {
+        display: grid;
+
+        gap: 1rem;
+        grid-template-columns: repeat(3, 1fr);
+
+        grid-template-rows: repeat(2, 1fr);
+      }
+    }
+  }
+}
+
+@media (min-width: 800px) and (max-width: 991.98px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+  body {
+    #grid {
+      width: 95%;
+      height: 90%;
+    }
+  }
+}
+
+@media (min-width: 991.98px) {
+  #grid {
+    .Jeremy-Robson {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+
+        img {
+          width: 6rem;
+          border-radius: 50px;
+          margin: 0 0;
+          margin-left: 2rem;
+        }
+
+        .header-text {
+          font-size: 1.25rem;
+          margin-left: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        span {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+}

@@ -7,13 +7,13 @@
 .row-sizing .content {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
   border-radius: 20px;
   background-color: #1c1f4a;
   width: 100%;
-  height: 70%;
-  top: 2rem;
+  height: 80%;
+  top: 20%;
   position: absolute;
 }
 
@@ -21,13 +21,22 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.row-sizing .content .current-hours .current-hours-text {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -40,24 +49,26 @@
   font-size: 1.25rem;
 }
 
-.row-sizing .content .current-hours h2 {
-  font-family: "Rubik", sans-serif;
-  font-weight: 300;
-  color: white;
-  font-size: 1.75rem;
-}
-
 .row-sizing .content .previous-hours {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.row-sizing .content .previous-hours .previous-hours-text {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -74,8 +85,116 @@
 .row-sizing .content .previous-hours p {
   font-family: "Rubik", sans-serif;
   font-weight: 300;
-  font-size: 0.9rem;
   color: #bdc1ff;
+}
+
+@media (min-width: 320px) {
+  #grid {
+    -ms-grid-rows: 200px 2fr;
+        grid-template-rows: 200px 2fr;
+    height: 100%;
+    max-height: auto;
+  }
+  #grid .Jeremy-Robson .header {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .row-sizing .content p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 360px) {
+  .row-sizing .content p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 767.98px) {
+  body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  body #grid {
+    -ms-grid-columns: 0.75fr 2fr;
+        grid-template-columns: 0.75fr 2fr;
+    -ms-grid-rows: 1fr;
+        grid-template-rows: 1fr;
+    height: 70%;
+    width: 90%;
+  }
+  body #grid .Jeremy-Robson .header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  body #grid .Jeremy-Robson .header img {
+    margin: 0 0;
+    margin-left: 2rem;
+  }
+  body #grid .Jeremy-Robson .header .header-text {
+    font-size: 1.25rem;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+  }
+  body #grid .Jeremy-Robson .header span {
+    font-size: 3rem;
+  }
+  body #grid .nested-grid {
+    display: -ms-grid;
+    display: grid;
+    gap: 1rem;
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+    -ms-grid-rows: (1fr)[2];
+        grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 800px) and (max-width: 991.98px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+  body #grid {
+    width: 95%;
+    height: 90%;
+  }
+}
+
+@media (min-width: 991.98px) {
+  #grid .Jeremy-Robson .header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  #grid .Jeremy-Robson .header img {
+    width: 6rem;
+    border-radius: 50px;
+    margin: 0 0;
+    margin-left: 2rem;
+  }
+  #grid .Jeremy-Robson .header .header-text {
+    font-size: 1.25rem;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+  }
+  #grid .Jeremy-Robson .header span {
+    font-size: 3rem;
+  }
 }
 
 * {
@@ -87,11 +206,8 @@
 
 body {
   width: 100vw;
-  height: 100vh auto;
+  height: 100vh;
   max-height: auto;
-  display: -ms-grid;
-  display: grid;
-  place-items: center;
   background-color: #0f1424;
 }
 
@@ -100,8 +216,7 @@ body {
   height: 90%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 0.8fr 2fr;
-      grid-template-rows: 0.8fr 2fr;
+  margin: auto;
   gap: 1rem;
 }
 
@@ -121,9 +236,6 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 #grid .Jeremy-Robson .header-text {
@@ -195,8 +307,9 @@ body {
 #grid .nested-grid {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: (minmax(150px, auto))[6];
-      grid-template-rows: repeat(6, minmax(150px, auto));
+  gap: 1rem;
+  -ms-grid-rows: (150px)[6];
+      grid-template-rows: repeat(6, 150px);
   max-height: auto;
 }
 
@@ -207,5 +320,12 @@ body {
       grid-template-rows: 1fr 2fr;
   border-radius: 25px;
   position: relative;
+}
+
+#grid .nested-grid h2 {
+  font-family: "Rubik", sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 1.75rem;
 }
 /*# sourceMappingURL=main.css.map */

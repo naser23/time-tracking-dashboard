@@ -1,5 +1,6 @@
 @import "_config";
 @import "_reused-classes";
+@import "_queries";
 
 * {
   margin: 0;
@@ -9,10 +10,9 @@
 
 body {
   width: 100vw;
-  height: 100vh auto;
+  height: 100vh;
   max-height: auto;
-  display: grid;
-  place-items: center;
+
   background-color: $very-dark-blue;
 }
 
@@ -20,7 +20,8 @@ body {
   width: 80%;
   height: 90%;
   display: grid;
-  grid-template-rows: 0.8fr 2fr;
+  margin: auto;
+
   gap: 1rem;
 
   .Jeremy-Robson {
@@ -34,7 +35,7 @@ body {
       background-color: $blue;
       border-radius: 20px;
       display: flex;
-      align-items: center;
+      // align-items: center;
     }
 
     .header-text {
@@ -89,7 +90,8 @@ body {
 
   .nested-grid {
     display: grid;
-    grid-template-rows: repeat(6, minmax(150px, auto));
+    gap: 1rem;
+    grid-template-rows: repeat(6, 150px);
     max-height: auto;
 
     .row-sizing {
@@ -97,6 +99,12 @@ body {
       grid-template-rows: 1fr 2fr;
       border-radius: 25px;
       position: relative;
+    }
+
+    h2 {
+      @include fontWeight(300);
+      color: white;
+      font-size: 1.75rem;
     }
   }
 }
