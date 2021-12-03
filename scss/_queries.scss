@@ -10,6 +10,11 @@
       .header {
         align-items: center;
       }
+      .filter-time-period {
+        ul {
+          align-items: center;
+        }
+      }
     }
   }
   .row-sizing {
@@ -18,6 +23,9 @@
         font-size: 0.85rem;
       }
     }
+  }
+  .nested-grid {
+    grid-template-rows: repeat(6, 150px);
   }
 }
 
@@ -37,17 +45,19 @@
     justify-content: center;
 
     #grid {
-      grid-template-columns: 0.75fr 2fr;
-      grid-template-rows: 1fr;
+      // grid-template-columns: 0.75fr 2fr;
+      // grid-template-rows: 1fr;
       // grid-template-rows: auto;
+      // grid-template-rows: 2fr 0.75fr;
       height: 70%;
       width: 90%;
 
       .Jeremy-Robson {
         .header {
-          flex-direction: column;
-          align-items: flex-start;
+          // flex-direction: column;
+          // align-items: center;
           justify-content: space-around;
+          grid-template-rows: 2fr 0.75fr;
 
           img {
             margin: 0 0;
@@ -70,9 +80,6 @@
         display: grid;
 
         gap: 1rem;
-        grid-template-columns: repeat(3, 1fr);
-
-        grid-template-rows: repeat(2, 1fr);
       }
     }
   }
@@ -89,11 +96,14 @@
 
 @media (min-width: 991.98px) {
   #grid {
+    grid-template-columns: 0.75fr 2fr;
+    grid-template-rows: 1fr;
+
     .Jeremy-Robson {
       .header {
         flex-direction: column;
-        align-items: flex-start;
         justify-content: space-around;
+        align-items: flex-start;
 
         img {
           width: 6rem;
@@ -111,6 +121,41 @@
         span {
           font-size: 3rem;
         }
+      }
+
+      .filter-time-period {
+        ul {
+          font-size: 1.25rem;
+          flex-direction: column;
+          align-items: flex-start;
+          padding-left: 1.5rem;
+        }
+      }
+    }
+
+    .nested-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+
+      .current-hours {
+        align-items: center;
+      }
+
+      .previous-hours {
+        .previous-hours-text {
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: start;
+        }
+      }
+
+      .time-text {
+        font-size: 3.5rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
       }
     }
   }

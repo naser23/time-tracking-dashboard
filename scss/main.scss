@@ -69,7 +69,6 @@ body {
         height: 100%;
         display: flex;
         justify-content: space-around;
-        align-items: center;
       }
 
       li {
@@ -91,7 +90,7 @@ body {
   .nested-grid {
     display: grid;
     gap: 1rem;
-    grid-template-rows: repeat(6, 150px);
+    // grid-template-rows: repeat(6, 150px);
     max-height: auto;
 
     .row-sizing {
